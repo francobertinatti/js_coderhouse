@@ -51,12 +51,31 @@ const baseDeDatos = [
   },
 ];
 
+const usuarios = [
+  {
+    nombre: "Azul",
+    mail: "azulperez@mail.com",
+    pass: "azulcomoelmarazul",
+  },
+  {
+    nombre: "Betiana",
+    mail: "betidicarlo@mail.com",
+    pass: "sha23AWx!",
+  },
+  {
+    nombre: "Carlos",
+    mail: "lopezcarlosadrian@mail.com",
+    pass: "sanlore2002",
+  },
+];
+
 let carrito = [];
 const moneda = "$";
 const DOMitems = document.querySelector("#items");
 const DOMcarrito = document.querySelector("#carrito");
 const DOMtotal = document.querySelector("#total");
 const DOMbotonVaciar = document.querySelector("#boton-vaciar");
+const DOMbotonComprar = document.querySelector("#boton-comprar");
 
 // Funciones
 
@@ -114,7 +133,7 @@ function renderizarCarrito() {
   // Vaciamos todo el html
   DOMcarrito.textContent = "";
   // Quitamos los duplicados
-  const carritoSinDuplicados = [...new Set(carrito)];
+  const carritoSinDuplicados = [...new Set(carrito)]; //Generamos una copia ...new
   // Generamos los Nodos a partir de carrito
   carritoSinDuplicados.forEach((item) => {
     // Obtenemos el item que necesitamos de la variable base de datos
@@ -187,8 +206,26 @@ function vaciarCarrito() {
   renderizarCarrito();
 }
 
+/**
+ * btnCompra exitosa - return - exit
+ */
+function compraExitosa() {
+  Swal.fire({
+    position: "center",
+    icon: "success",
+    title: "Compra Exitosa 😎",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+
+  carrito = [];
+  renderizarCarrito();
+}
+
 // Eventos
 DOMbotonVaciar.addEventListener("click", vaciarCarrito);
+DOMbotonComprar.addEventListener("click", compraExitosa);
+
 // Inicio
 renderizarProductos();
 renderizarCarrito();
