@@ -8,12 +8,13 @@ const btnIngresar = document.querySelector("#ingresar"),
 function inicioSesion(usuarios) {
   // Codigo inicio sesion
   let userFound = usuarios.find((usuario) => {
-    return usuario.nombre == user.value && usuario.pass == pass.value;
+    return usuario.nombre == user.value && usuario.password == pass.value;
   });
   if (userFound) {
     window.location.href = "./index.html";
   } else {
-    document.querySelector("#mensaje").innerText = "Usuario no encontrado";
+    document.querySelector("#mensaje").innerText =
+      "Usuario / Clave no encontrado";
   }
 
   return userFound;

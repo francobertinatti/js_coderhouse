@@ -51,24 +51,6 @@ const baseDeDatos = [
   },
 ];
 
-const usuarios = [
-  {
-    nombre: "Azul",
-    mail: "azulperez@mail.com",
-    pass: "azulcomoelmarazul",
-  },
-  {
-    nombre: "Betiana",
-    mail: "betidicarlo@mail.com",
-    pass: "sha23AWx!",
-  },
-  {
-    nombre: "Carlos",
-    mail: "lopezcarlosadrian@mail.com",
-    pass: "sanlore2002",
-  },
-];
-
 let carrito = [];
 const moneda = "$";
 const DOMitems = document.querySelector("#items");
@@ -210,13 +192,23 @@ function vaciarCarrito() {
  * btnCompra exitosa - return - exit
  */
 function compraExitosa() {
-  Swal.fire({
-    position: "center",
-    icon: "success",
-    title: "Compra Exitosa 😎",
-    showConfirmButton: false,
-    timer: 1500,
-  });
+  if (carrito.length !== 0) {
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Compra Exitosa 😎",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  } else {
+    Swal.fire({
+      position: "center",
+      icon: "warning",
+      title: "Tu carrito esta vacio",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
 
   carrito = [];
   renderizarCarrito();
